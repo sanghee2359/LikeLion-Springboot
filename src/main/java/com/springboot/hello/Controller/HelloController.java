@@ -21,4 +21,10 @@ public class HelloController {
     public String getVariable2(@PathVariable(value="variable") String var){
         return var;
     }
+
+    @GetMapping(value="/request1")
+    public String getVariable3(@RequestParam String name, @RequestParam String email, @RequestParam String organization){
+        return String.format("%s %s %s", name, email,organization);
+    }
+
 }
