@@ -23,6 +23,7 @@ public class PostController {
 
     @PostMapping(value="/member2")
     public String postMember2(@RequestBody MemberDto memberDto){
+
         return memberDto.toString();
     }
 }
