@@ -4,16 +4,14 @@ package com.springboot.hello.dao;
 import com.springboot.hello.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
-@Component
+
+@Repository
 public class UserDao {
     private final JdbcTemplate jdbcTemplate;
     private final DataSource dataSource;
@@ -29,26 +27,30 @@ public class UserDao {
             return user;
         }
     };
-
-    public void deleteAll() {
-        this.jdbcTemplate.update("DELETE FROM users");
-    }
-    public int getCount()  {
-        return this.jdbcTemplate.queryForObject("SELECT count(*) FROM users;", Integer.class);
-    }
+    // create
     public void add(User user) {
-//        Connection conn = connectionMaker.openConnection();
+
         this.jdbcTemplate.update("INSERT INTO users(id, name, password) VALUES(?, ?, ?);",
                 user.getId(), user.getName(), user.getPassword());
 
     }
+    // read
     public User findById(String id)  {
         String sql = "SELECT id, name, password FROM users WHERE id=?;";
         return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
-
     public List<User> getAll(){
         String sql = "SELECT * from users order by id";
         return this.jdbcTemplate.query(sql, rowMapper);
+    }
+    // update
+    public int update(User user, String id) {
+        String sql = "UPDATE users SET name = ?, password = ? WHERE id = ?;";
+
+        return jdbcTemplate.update(sql,rowMapper, id);
+    }
+    // delete
+    public void deleteAll() {
+        this.jdbcTemplate.update("DELETE FROM users");
     }
 }
