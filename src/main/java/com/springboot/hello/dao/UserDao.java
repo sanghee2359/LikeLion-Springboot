@@ -44,10 +44,11 @@ public class UserDao {
         return this.jdbcTemplate.query(sql, rowMapper);
     }
     // update
-    public int update(User user, String id) {
-        String sql = "UPDATE users SET name = ?, password = ? WHERE id = ?;";
-
-        return jdbcTemplate.update(sql,rowMapper, id);
+    public void update(User user,String id) {
+        this.jdbcTemplate.update("UPDATE users SET name = ?, password = ? WHERE id = ?;"
+                , user.getName()
+                , user.getPassword()
+                , id);
     }
     // delete
     public void deleteAll() {
