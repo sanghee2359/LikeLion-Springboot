@@ -1,5 +1,8 @@
 package com.springboot.hello.domain;
 
+import lombok.Setter;
+
+@Setter
 public class User {
     private String id;
     private String name;
