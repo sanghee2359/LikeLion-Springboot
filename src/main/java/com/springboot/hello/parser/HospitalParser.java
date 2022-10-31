@@ -8,22 +8,20 @@ import java.util.Arrays;
 public class HospitalParser implements Parser<Hospital> {
     @Override
     public Hospital parse(String str) {
-        //String[] row = str.split("\",\""); // 따옴표를 기준으로 split
-        String[] row = str.replace("\"", "").split(",");
-        System.out.println(Arrays.toString(row));
+        String[] row = str.split("\",\""); // 따옴표를 기준으로 split
 
         // 객체 생성
         Hospital hospital = new Hospital();
 
         // setter
-        hospital.setId(Integer.parseInt(row[0].replace("\n","")));
+        hospital.setId(Integer.parseInt(row[0].replace("\"","")));
         hospital.setOpenServiceName(row[1]);
         hospital.setOpenLocalGovernmentCode(Integer.parseInt(row[3]));
         hospital.setManagementNumber(row[4]);
         // substring
         int year = Integer.parseInt(row[5].substring(0, 4));
         int month = Integer.parseInt(row[5].substring(4, 6));
-        int day = Integer.parseInt(row[5].substring(6, 7));
+        int day = Integer.parseInt(row[5].substring(6, 8));
         // System.out.printf("%d %d %d \n", year, month, day);
         hospital.setLicenseDate(LocalDateTime.of(year, month, day, 0, 0, 0));
 
@@ -37,8 +35,8 @@ public class HospitalParser implements Parser<Hospital> {
         hospital.setHealthcareProviderCount(Integer.parseInt(row[29]));
         hospital.setPatientRoomCount(Integer.parseInt(row[30]));
         hospital.setTotalNumberOfBeds(Integer.parseInt(row[31]));
-        hospital.setTotalAreaSize(Integer.parseInt(row[32].replace("\"","")));
-
+        hospital.setTotalAreaSize(Float.parseFloat(row[32].replace("\"","")));
+        System.out.println(Arrays.toString(row));
         return hospital;
     }
 }
