@@ -12,6 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @SpringBootTest
 class HospitalDaoTest {
@@ -24,16 +27,24 @@ class HospitalDaoTest {
     @Test
     @DisplayName("Insert가 잘 동작하는지")
     void add() {
+        // deleteAll, getCount
+        hospitalDao.deleteAll();
+        assertEquals(0, hospitalDao.getCount());
+
         HospitalParser hp = new HospitalParser();
         Hospital hospital = hp.parse(line1);
+
+        // add
         hospitalDao.add(hospital);
+        assertEquals(1, hospitalDao.getCount());
+
+        // findById
+        Hospital selectedHospital = hospitalDao.findById(hospital.getId());
+        assertEquals(selectedHospital.getId(),hospital.getId());
+        assertEquals(selectedHospital.getHospitalName(),hospital.getHospitalName());
+        assertEquals(selectedHospital.getOpenServiceName(), hospital.getOpenServiceName());
+        //날짜, float test
+        assertTrue(selectedHospital.getLicenseDate().isEqual(hospital.getLicenseDate()));
+        assertEquals(selectedHospital.getTotalAreaSize(), hospital.getTotalAreaSize());
     }
-    @Test
-    @DisplayName("getcount 동작확인")
-    void getCount() {
-        System.out.println(hospitalDao.getCount());
-    }
-
-
-
 }
