@@ -13,7 +13,7 @@ import java.util.Optional;
 
 //id 110000의 1병원 이름, 2주소, 3도로명주소, 4의료진 수, 5병상 수, 6면적, 7폐업여부
 @RestController
-@RequestMapping("/api/v3/get-api")
+@RequestMapping("/api/v3/hospital")
 public class HospitalController {
     private final HospitalDao hospitalDao;
 
