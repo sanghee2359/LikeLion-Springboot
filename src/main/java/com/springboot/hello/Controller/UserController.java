@@ -44,7 +44,6 @@ public class UserController {
     // update
     @PutMapping("/update/{userId}")
     public String updateUser(@RequestBody User user, @PathVariable String userId){
-        //user.setId(userId);
         userDao.update(user, userId);
         return String.format("Id: %s 회원의 정보가 성공적으로 업데이트 되었습니다.\nname:%s\npassword:%s\n"
                 , user.getId()

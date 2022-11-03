@@ -11,9 +11,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor // 빈
+// java는 camel case로 변수작성
 public class Hospital {
     private int id;
-    private String openServiceName; // java는 camel case로 변수작성
+    private String openServiceName;
     private int openLocalGovernmentCode;
     private String managementNumber;
     private LocalDateTime licenseDate;
@@ -28,9 +29,4 @@ public class Hospital {
     private int patientRoomCount;
     private int totalNumberOfBeds;
     private float totalAreaSize;
-
-
-
-
-
 }

@@ -24,11 +24,10 @@ public class ReadLineContext<T> {
             try {
                 result.add(parser.parse(str));
             } catch(Exception e) {
-                System.out.printf("파싱 중 문제가 발생하여 이 라인은 넘어갑니다. 파일내용:%s", str);
+                System.out.printf("파싱 중 문제가 발생하여 이 라인은 넘어갑니다. 파일내용:%s\n", str);
             }
         }
         reader.close();
         return result;
     }
-
 }

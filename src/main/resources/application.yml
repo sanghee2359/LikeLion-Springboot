@@ -1,9 +1,11 @@
+server:
+  port:8080
 spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/like-lion-db
+    url: jdbc:mysql://ec2-3-38-172-197.ap-northeast-2.compute.amazonaws.com:3306/like-lion-db
     username: root
-    password: 12345678
+    password: sanghee065@

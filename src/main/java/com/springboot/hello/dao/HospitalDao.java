@@ -37,7 +37,7 @@ public class HospitalDao {
         hospital.setHealthcareProviderCount(rs.getInt("healthcare_provider_count"));
         hospital.setPatientRoomCount(rs.getInt("patient_room_count"));
         hospital.setTotalNumberOfBeds(rs.getInt("total_number_of_beds"));
-        hospital.setTotalAreaSize(rs.getFloat("total_area"));
+        hospital.setTotalAreaSize(rs.getFloat("total_area_size"));
 
         return hospital;
     };
@@ -59,7 +59,7 @@ public class HospitalDao {
         String sql = "INSERT INTO `like-lion-db`.`nation_wide_hospital`(`id`, `open_service_name`, `open_local_goverment_code`, `management_number`, \n" +
                 "`license_date`, `business_status`, `business_status_code`, `phone`, `full_address`, \n" +
                 "`road_name_address`, `hospital_name`, `business_type_name`, `healthcare_provider_count`, \n" +
-                "`patient_room_count`, `total_number_of_beds`, `total_area`) \n" +
+                "`patient_room_count`, `total_number_of_beds`, `total_area_size`) \n" +
                 "VALUES(?,?,?," +
                 "?,?,?," +
                 "?,?,?," +

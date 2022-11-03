@@ -1,11 +1,9 @@
 package com.springboot.hello.Controller;
 
-import com.springboot.hello.dto.MemberDto;
+import com.springboot.hello.domain.dto.MemberDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/put-api")

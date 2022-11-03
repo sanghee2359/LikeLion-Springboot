@@ -5,12 +5,13 @@ import com.springboot.hello.parser.HospitalParser;
 import com.springboot.hello.parser.ReadLineContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.Context;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+
+import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,9 +25,10 @@ class HospitalDaoTest {
 
     @Autowired // HospitalDao는 Factory가 없는데 왜 DI가 될까?
     HospitalDao hospitalDao; // component가 붙어있는 클래스를 springboot가 Bean으로 등록한다. - HospitalDao
+
     @Test
     @DisplayName("Insert가 잘 동작하는지")
-    void add() {
+    void methodTest() {
         // deleteAll, getCount
         hospitalDao.deleteAll();
         assertEquals(0, hospitalDao.getCount());
@@ -37,6 +39,7 @@ class HospitalDaoTest {
         // add
         hospitalDao.add(hospital);
         assertEquals(1, hospitalDao.getCount());
+
 
         // findById
         Hospital selectedHospital = hospitalDao.findById(hospital.getId());
